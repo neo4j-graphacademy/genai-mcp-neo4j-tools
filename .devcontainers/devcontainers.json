@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        ".env"
+      ]
+    }
+  }
+}
