@@ -41,11 +41,6 @@ Alternatively, you can create the `mcp.json` file manually, adding the server de
 [source,json]
 include::examples/mcp-no-env.json.adoc[]
 
-// link:{repository-raw}/main/examples/mcp.json[mcp.json]
-// include::{repository-raw}/main/examples/mcp.json[]
-
-
-
 == Step 2: Set environment variables
 
 The Neo4j Cypher MCP server will require environment variables to allow it to
