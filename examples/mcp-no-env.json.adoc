@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "neo4j-cypher": {
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-cypher"
+      ]
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {
   "name": "",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+ 	"postCreateCommand": "bash .devcontainer/post_create.sh",
   "features": {
     "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {}
   },

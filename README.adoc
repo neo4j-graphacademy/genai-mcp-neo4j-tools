@@ -3,42 +3,96 @@
 [quote]
 Learn how to use the Model Context Protocol to create intelligent AI applications
 
-link:https://graphacademy.neo4j.com/courses/genai-mcp-neo4j-tools[Enroll for free at Neo4j GraphAcademy^].
+link:https://graphacademy.neo4j.com/courses/genai-mcp-neo4j-tools/[Enroll for free at Neo4j GraphAcademy^].
 
 
-== Resources
+== Set up the Neo4j Cypher MCP Server
 
-=== `mcp-neo4j-cypher`
+// tag::setup[]
+The server is written in Python, so we will use the `uvx` command to install the server from PyPI and run the server locally, and configure VS Code to communicate with the server using the Standard Input/Output (stdio) transport method.
 
-link:https://github.com/neo4j-contrib/mcp-neo4j/tree/main/servers/mcp-neo4j-cypher[View documentation^].
 
-The command to start the server through the command pallet is:
+== Step 1: Install the server
 
-[source]
-----
-uvx mcp-neo4j-cypher@0.2.3 --transport stdio
-----
+To install the Neo4j Cypher MCP server in VS Code, you have a number of options:
 
-Your full config may look like:
+=== Option 1: Using the Command Palette
 
-..cursor/mcp.json
+You can add the server directly through VS Code's interface by selecting the **MCP: Add Server** command:
+
+// TODO: video
+
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Type **MCP: Add Server** and select the command
+3. Enter the server details:
+   * **Name**: `neo4j-cypher`
+   * **Command**: `uvx`
+   * **Arguments**: `mcp-neo4j-cypher`
+4. You can configure the server to be available in all workspaces or just the current workspace.
+
+This method will create an `mcp.json` file in the repository, which will make the server available in the current workspace.
+
+
+=== Option 2: Workspace Configuration
+
+Alternatively, you can create the `mcp.json` file manually, adding the server details to the file.
+
+.mcp.json
 [source,json]
-----
-{
-  "servers": {
-    "neo4j-cypher": {
-      "command": "uvx",
-      "args": [
-        "mcp-neo4j-cypher@0.2.3",
-        "--transport", "stdio"
-      ],
-      "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "<your-password>",
-        "NEO4J_DATABASE": "neo4j"
-      }
-    }
-  }
-}
-----
+include::examples/mcp-no-env.json.adoc[]
+
+// link:{repository-raw}/main/examples/mcp.json[mcp.json]
+// include::{repository-raw}/main/examples/mcp.json[]
+
+
+
+== Step 2: Set environment variables
+
+The Neo4j Cypher MCP server will require environment variables to allow it to
+
+* `NEO4J_URI` - The connection URI for your Neo4j database (e.g., `neo4j+s://dbid.databases.neo4j.io`)
+* `NEO4J_USERNAME` - Your Neo4j username (typically `neo4j`)
+* `NEO4J_PASSWORD` - Your Neo4j password
+
+You can set these variables by adding a new `env` section to the `neo4j-cypher` entry in the `mcp.json` file.
+
+.mcp.json
+[source, json, subs="attributes+"]
+include::examples/mcp.json.adoc[]
+
+ifndef::instance-ip[]
+[TIP]
+You can obtain a Neo4j Aura instance by enrolling to the link:https://graphacademy.neo4j.com/courses/genai-mcp-neo4j-tools/[Developing with Neo4j MCP Tools
+ course on Neo4j GraphAcademy^].
+endif::[]
+
+
+// end::setup[]
+
+// tag::managing[]
+
+== Managing the Server
+
+Once configured, you can manage the MCP server using VS Code's built-in commands:
+
+* Run **MCP: List Servers** from the Command Palette to view all configured servers
+* **Start**, **Stop**, or **Restart** servers as needed
+* **Show Output** to view server logs for troubleshooting
+* **Browse Resources** to see what the server provides
+
+== Using the tools
+
+Now, when you ask GitHub Copilot Chat to interact with your Neo4j database, the following sequence will occur:
+
+. Copilot analyzes the request and determines that a Neo4j tool is needed.
+. Copilot requests permission to use the Neo4j tools (such as `get_schema` or `execute_cypher`).
+. Once you have granted permission, Copilot invokes the tool with the appropriate parameters.
+. The MCP server connects to your Neo4j database, executes the operation, and returns the result.
+
+VS Code will ask your permission before running a tool, providing the options to run the tool once or always run the tool without asking permission.
+
+This step is so important.
+Anyone can build or deploy an MCP server, so it is crucial that potentially destructive steps are approved by a human.
+Make sure you trust the developer of the server and the capabilities of the tool, especially when working with database operations.
+
+// end::managing[]
