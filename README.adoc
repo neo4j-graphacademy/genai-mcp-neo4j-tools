@@ -81,7 +81,7 @@ ifdef::instance-database[]
         "NEO4J_DATABASE": "{instance-database}"
 endif::[]
 ifndef::instance-database[]
-        "NEO4J_DATABASE": "NEO4J"
+        "NEO4J_DATABASE": "neo4j"
 endif::[]
 endif::[]
 ifndef::instance-ip[]
