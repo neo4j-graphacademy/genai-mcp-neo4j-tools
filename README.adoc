@@ -9,33 +9,12 @@ link:https://graphacademy.neo4j.com/courses/genai-mcp-neo4j-tools/[Enroll for fr
 == Set up the Neo4j Cypher MCP Server
 
 // tag::setup[]
-The server is written in Python, so we will use the `uvx` command to install the server from PyPI and run the server locally, and configure VS Code to communicate with the server using the Standard Input/Output (stdio) transport method.
+The server is written in Python, so you will use the `uvx` command to install the server from PyPI and run the server locally, and configure VS Code to communicate with the server using the Standard Input/Output (stdio) transport method.
 
 
 == Step 1: Install the server
 
-To install the Neo4j Cypher MCP server in VS Code, you have a number of options:
-
-=== Option 1: Using the Command Palette
-
-You can add the server directly through VS Code's interface by selecting the **MCP: Add Server** command:
-
-// TODO: video
-
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Type **MCP: Add Server** and select the command
-3. Enter the server details:
-   * **Name**: `neo4j-cypher`
-   * **Command**: `uvx`
-   * **Arguments**: `mcp-neo4j-cypher`
-4. You can configure the server to be available in all workspaces or just the current workspace.
-
-This method will create an `mcp.json` file in the repository, which will make the server available in the current workspace.
-
-
-=== Option 2: Workspace Configuration
-
-Alternatively, you can create the `mcp.json` file manually, adding the server details to the file.
+To install the Neo4j Cypher MCP server in VS Code, open the `.vscode/mcp.json` file and add the server configuration:
 
 .mcp.json
 [source,json]
@@ -95,6 +74,11 @@ endif::[]
   }
 }
 ----
+
+[TIP]
+====
+You can also use the VS Code **MCP: Add Server** command to setup the `.vscode/mcp.json` file, and then add the `env` section manually.
+====
 
 ifndef::instance-ip[]
 [TIP]
