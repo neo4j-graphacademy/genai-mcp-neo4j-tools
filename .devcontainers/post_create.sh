@@ -1,2 +1,2 @@
 pip install uv
-ux add -r requirements.txt
+# uv add -r requirements.txt
