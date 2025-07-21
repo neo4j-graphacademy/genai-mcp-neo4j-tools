@@ -33,7 +33,7 @@ To install the Neo4j Cypher MCP server in VS Code, open the `.vscode/mcp.json` f
 
 == Step 2: Set environment variables
 
-The Neo4j Cypher MCP server will require environment variables to allow it to
+The Neo4j Cypher MCP server will require environment variables to allow it to connect to an instance.
 
 * `NEO4J_URI` - The connection URI for your Neo4j database (e.g., `neo4j+s://dbid.databases.neo4j.io`)
 * `NEO4J_USERNAME` - Your Neo4j username (typically `neo4j`)
