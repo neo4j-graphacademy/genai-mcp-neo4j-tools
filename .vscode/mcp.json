@@ -1,3 +1,9 @@
 {
-    
+    "servers": {
+        "neo4j": {
+            "type": "stdio",
+            "command": "neo4j-mcp",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    }
 }
