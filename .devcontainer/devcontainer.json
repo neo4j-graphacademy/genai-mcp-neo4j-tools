@@ -1,7 +1,10 @@
 {
   "name": "Developing with Neo4j MCP Tools",
-  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
   "postCreateCommand": "bash .devcontainer/post_create.sh",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/workspaces/genai-mcp-neo4j-tools/neo4j-mcp"
+  },
   "customizations": {
     "codespaces": {
       "openFiles": [
